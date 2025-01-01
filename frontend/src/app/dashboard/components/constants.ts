@@ -1,18 +1,53 @@
-export const PREDEFINED_INCOME = [
-    'Income',
-    'Extra',
-    'Investments'
+import { PredefinedTransactions } from "./types";
+
+export const PREDEFINED_INCOME: PredefinedTransactions[] = [
+    {
+        name: 'Wage',
+        logo: 'CircleDollarSign'
+    },
+    {
+        name: 'Extra',
+        logo: 'Banknote'
+    },
+    {
+        name: 'Investments',
+        logo: 'ChartLine'
+    }
 ];
 
-export const PREDEFINED_EXPENSES = [
-    'Rent', 
-    'Utilities',
-    'Food and Drinks',
-    'Transport',
-    'Health',
-    'Clothing',
-    'Debt',
-    'Leisure'
+export const PREDEFINED_EXPENSES: PredefinedTransactions[] = [
+    {
+        name: 'Rent',
+        logo: 'House'
+    },
+    {
+        name: 'Utilities',
+        logo: 'Plug'
+    },
+    {
+        name: 'Food and Drinks',
+        logo: 'Apple'
+    },
+    {
+        name: 'Transport',
+        logo: 'Car'
+    },
+    {
+        name: 'Health',
+        logo: 'HeartPulse'
+    },
+    {
+        name: 'Clothing',
+        logo: 'Shirt'
+    },
+    {
+        name: 'Debt',
+        logo: 'Landmark'
+    },
+    {
+        name: 'Leisure',
+        logo: 'Cat'
+    },
 ];
 
 export const DEFAULT_CATEGORY_RULES = {
