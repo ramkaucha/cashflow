@@ -1,9 +1,14 @@
-import Image from "next/image";
-import SpendingTracker from "../components/spending-tracker.tsx";
+'use client';
+
+import { useRouter } from 'next/navigation'
+import {useEffect} from "react";
 
 
 export default function Home() {
-  return (
-    <SpendingTracker />
-  )
+  const router = useRouter();
+  useEffect(() => {
+    router.push('/dashboard')
+  }, [router]);
+  
+  return <></>
 }
