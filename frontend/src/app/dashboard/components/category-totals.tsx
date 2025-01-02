@@ -82,14 +82,37 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
           <CardTitle>Financial Summary</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-3 gap-4">
-            <div className="text-center">
-              <p className="text-sm text-gray-500">Total Income</p>
-              <p className="text-xl font-bold text-green-600">{formatCurrency(totalIncome)}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-sm text-gray-500">Total Expense</p>
-              <p className="text-xl font-bold text-red-600">{formatCurrency(totalExpense)}</p>
+          <div className="flex justify-end">
+            <div className="flex-col space-y-2">
+              <div>
+                <p className="text-sm text-gray-800 font-semibold text-right">
+                  Total Income
+                  <span className="text-lg font-bold ml-3 text-green-600">
+                    + {formatCurrency(totalIncome)}
+                  </span>
+                </p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-800 font-semibold text-right">
+                  Total Expense
+                  <span className="text-lg font-bold ml-3 text-red-600">
+                    {formatCurrency(totalExpense)}
+                  </span>
+                </p>
+              </div>
+              <hr />
+              <div>
+                <p className="text-sm text-gray-800 font-semibold text-right">
+                  Net Amount
+                  <span
+                    className={`text-lg font-bold ml-3 ${
+                      netAmount >= 0 ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {formatCurrency(netAmount)}
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
         </CardContent>
