@@ -67,6 +67,10 @@ export const DEFAULT_CATEGORY_RULES = {
   SALARY: "Wage",
   PAYPAL: "Extra",
   STAKE: "Investments",
+  HOUSE: "Rent",
+  REBEL: "Clothing",
+  "CREDUT CARD": "Debt",
+  HOLIDAYS: "Leisure",
 };
 
 export const STORAGE_KEY = "SpendingTrackerRules";
