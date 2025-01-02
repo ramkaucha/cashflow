@@ -16,6 +16,7 @@ import {
   LucideIcon,
 } from "lucide-react";
 import React from "react";
+import { PREDEFINED_EXPENSES, PREDEFINED_INCOME } from "./constants";
 
 interface CategoryTotals {
   [key: string]: number;
@@ -73,7 +74,7 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
     return IconComponent ? <IconComponent className="w-5 h-5" /> : null;
   };
 
-  const netAmount = totalIncome - totalExpense;
+  const netAmount = totalIncome + totalExpense;
 
   return (
     <div className="space-y-6">
@@ -103,7 +104,7 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
               <hr />
               <div>
                 <p className="text-sm text-gray-800 font-semibold text-right">
-                  Net Amount
+                  Net Amount (Profit)
                   <span
                     className={`text-lg font-bold ml-3 ${
                       netAmount >= 0 ? "text-green-600" : "text-red-600"
@@ -126,15 +127,18 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {Object.entries(incomeTotal).map(([category, amount]) => (
-                <div key={category} className="flex justify-between">
-                  <div className="flex items-center gap-2">
-                    {getIcon(category)}
-                    <span>{category}</span>
+              {PREDEFINED_INCOME.map((category) => {
+                const amount = incomeTotal[category.name] || 0;
+                return (
+                  <div key={category.name} className="flex justify-between">
+                    <div className="flex items-center gap-2">
+                      {getIcon(category.name)}
+                      <span>{category.name}</span>
+                    </div>
+                    <span className="font-semibold text-green-600">{formatCurrency(amount)}</span>
                   </div>
-                  <span className="font-semibold text-green-600">{formatCurrency(amount)}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </CardContent>
         </Card>
@@ -146,15 +150,18 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {Object.entries(expenseTotal).map(([category, amount]) => (
-                <div key={category} className="flex justify-between">
-                  <div className="flex items-center gap-2">
-                    {getIcon(category)}
-                    <span>{category}</span>
+              {PREDEFINED_EXPENSES.map((category) => {
+                const amount = expenseTotal[category.name] || 0;
+                return (
+                  <div key={category.name} className="flex justify-between">
+                    <div className="flex items-center gap-2">
+                      {getIcon(category.name)}
+                      <span>{category.name}</span>
+                    </div>
+                    <span className="font-semibold text-green-600">{formatCurrency(amount)}</span>
                   </div>
-                  <span className="font-semibold text-green-600">{formatCurrency(amount)}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </CardContent>
         </Card>
