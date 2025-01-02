@@ -4,6 +4,7 @@ import {
   PredefinedTransactions,
   ProcessedTransaction,
   LucideIconName,
+  Transaction,
 } from "@/app/dashboard/components/types";
 import {
   AlertDialog,
@@ -13,16 +14,25 @@ import {
 } from "@/components/ui/alert-dialog";
 import { PREDEFINED_EXPENSES, PREDEFINED_INCOME } from "@/app/dashboard/components/constants";
 import * as LucideIcons from "lucide-react";
-import { LucideIcon } from "lucide-react";
+import { LucideIcon, X, Plus } from "lucide-react";
 import { useState } from "react";
+import AnimatedCloseButton from "@/components/animated-close-button";
 
 interface CategoryModalProps {
   transaction: ProcessedTransaction | null;
   title: string;
   onSelect: (category: string) => void;
+  onDelete: (transaction: ProcessedTransaction | Transaction) => void;
+  onClose: (transaction: ProcessedTransaction | Transaction) => void;
 }
 
-export default function CategoryModal({ transaction, title, onSelect }: CategoryModalProps) {
+export default function CategoryModal({
+  transaction,
+  title,
+  onSelect,
+  onDelete,
+  onClose,
+}: CategoryModalProps) {
   const [showAll, setShowAll] = useState(false);
 
   if (!transaction) return null;
@@ -36,14 +46,26 @@ export default function CategoryModal({ transaction, title, onSelect }: Category
   return (
     <AlertDialog open={!!transaction}>
       <AlertDialogContent>
+        <div className="flex justify-center">
+          <AnimatedCloseButton onClick={() => onClose(transaction)} />
+        </div>
         <div className="flex items-center justify-between mb-2">
           <AlertDialogTitle>{title}:</AlertDialogTitle>
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="text-sm text-blue-800 hover:text-blue-500 underline"
-          >
-            {showAll ? "Show Default" : "Show All"}
-          </button>
+          <div>
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="text-sm text-blue-800 hover:text-blue-500 underline"
+            >
+              {showAll ? "Show Default" : "Show All"}
+            </button>
+            <button
+              type="button"
+              className="ml-4 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 rounded-lg text-sm px-3 py-1.5 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              onClick={() => onDelete(transaction)}
+            >
+              Delete
+            </button>
+          </div>
         </div>
         <div>
           Transaction: {transaction.company_name}

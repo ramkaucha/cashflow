@@ -24,6 +24,7 @@ export default function DashboardPage() {
     handleCategorySelect,
     handleEditCategorySelect,
     clearSavedRules,
+    handleOnCloseModal,
   } = useTransaction();
 
   const [globalFilter, setGlobalFilter] = useState("");
@@ -74,11 +75,15 @@ export default function DashboardPage() {
           transaction={uncategorisedTransactions}
           title="Categorise Transaction"
           onSelect={handleCategorySelect}
+          onDelete={handleDeleteTransaction}
+          onClose={handleOnCloseModal}
         />
         <CategoryModal
           transaction={editingTransaction}
           title="Editing Transaction"
           onSelect={handleEditCategorySelect}
+          onDelete={handleDeleteTransaction}
+          onClose={handleOnCloseModal}
         />
       </CardContent>
     </Card>

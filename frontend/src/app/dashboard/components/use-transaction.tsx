@@ -110,12 +110,40 @@ export default function useTransaction() {
     setCategoryRules(DEFAULT_CATEGORY_RULES);
   };
 
-  const handleDeleteTransaction = (transaction: ProcessedTransaction) => {
+  const handleDeleteTransaction = (transaction: ProcessedTransaction | Transaction) => {
     const updatedTransactions = transactions.filter(
       (t) => t.company_name !== transaction.company_name || t.date !== transaction.date
     );
 
     processTransactions(updatedTransactions);
+
+    if (
+      uncategorisedTransactions &&
+      uncategorisedTransactions.company_name === transaction.company_name &&
+      uncategorisedTransactions.date === transaction.date
+    ) {
+      const newQueue = uncategorisedQueue.filter(
+        (t) => t.company_name !== uncategorisedTransactions.company_name
+      );
+      setUncategorisedQueue(newQueue);
+      setUncategorisedTransactions(newQueue.length > 0 ? newQueue[0] : null);
+    }
+    setEditingTransaction(null);
+  };
+
+  const handleOnCloseModal = (transaction: ProcessedTransaction | Transaction) => {
+    if (
+      uncategorisedTransactions &&
+      uncategorisedTransactions.company_name === transaction.company_name &&
+      uncategorisedTransactions.date === transaction.date
+    ) {
+      const newQueue = uncategorisedQueue.filter(
+        (t) => t.company_name !== uncategorisedTransactions.company_name
+      );
+      setUncategorisedQueue(newQueue);
+      setUncategorisedTransactions(newQueue.length > 0 ? newQueue[0] : null);
+    }
+    setEditingTransaction(null);
   };
 
   const handleEditCategory = (transaction: ProcessedTransaction) => {
@@ -171,5 +199,6 @@ export default function useTransaction() {
     handleCategorySelect,
     handleEditCategorySelect,
     clearSavedRules,
+    handleOnCloseModal,
   };
 }
