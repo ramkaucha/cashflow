@@ -42,13 +42,18 @@ export default function DashboardPage() {
         </button>
       </CardHeader>
       <CardContent>
-        <div className="mb-6">
+        <div className="mb-6 flex items-center space-x-2">
+          {/* <div className="flex-1"> */}
           <input
             type="file"
             accept=".csv"
             onChange={handleFileUpload}
-            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+            className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
           />
+          {/* </div> */}
+          <button className="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
+            Upload
+          </button>
         </div>
         <div className="mb-6">
           <CategoryTotals categoryTotals={categoryTotals} />
