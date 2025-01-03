@@ -88,7 +88,7 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
               <div>
                 <p className="text font-semibold text-right">
                   Total Income
-                  <span className="text-lg font-bold ml-3 text-green-600">
+                  <span className="text-lg font-bold ml-3 text-green-600 dark:text-green-300">
                     + {formatCurrency(totalIncome)}
                   </span>
                 </p>
@@ -96,7 +96,7 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
               <div>
                 <p className="text-sm  font-semibold text-right">
                   Total Expense
-                  <span className="text-lg font-bold ml-3 text-red-600">
+                  <span className="text-lg font-bold ml-3 text-red-600 dark:text-red-300">
                     {formatCurrency(totalExpense)}
                   </span>
                 </p>
@@ -107,7 +107,9 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
                   Net Amount (Profit)
                   <span
                     className={`text-lg font-bold ml-3 ${
-                      netAmount >= 0 ? "text-green-600" : "text-red-600"
+                      netAmount >= 0
+                        ? "text-green-600 dark:text-green-300"
+                        : "text-red-600 dark:text-red-300"
                     }`}
                   >
                     {formatCurrency(netAmount)}
@@ -135,7 +137,9 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
                       {getIcon(category.name)}
                       <span>{category.name}</span>
                     </div>
-                    <span className="font-semibold text-green-600">{formatCurrency(amount)}</span>
+                    <span className="font-semibold text-green-600 dark:text-green-300">
+                      {formatCurrency(amount)}
+                    </span>
                   </div>
                 );
               })}
@@ -158,7 +162,9 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
                       {getIcon(category.name)}
                       <span>{category.name}</span>
                     </div>
-                    <span className="font-semibold text-green-600">{formatCurrency(amount)}</span>
+                    <span className="font-semibold text-green-600 dark:text-green-300">
+                      {formatCurrency(amount)}
+                    </span>
                   </div>
                 );
               })}

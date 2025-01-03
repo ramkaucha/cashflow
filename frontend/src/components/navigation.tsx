@@ -61,7 +61,7 @@ export default function Navigation() {
 
   return (
     <motion.nav>
-      <div className="flex justify-between items-center w-full px-5">
+      <div className="flex justify-between items-center w-full px-5 pt-1">
         <div className="py-2 sm:block flex-col hidden">
           <Link href="/" className={`text-lg ${gluten.className}`}>
             CashFlow

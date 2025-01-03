@@ -36,7 +36,7 @@ export default function DashboardPage() {
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Spending Tracker</CardTitle>
         <button
-          className="flex items-center gap-2 px-2 py-1 text-sm text-red-600 hover:bg-red-50 rounded-md"
+          className="flex items-center gap-2 px-2 py-1 text-sm text-red-600 dark:text-red-300 dark:font-bold hover:bg-red-50 rounded-md"
           onClick={clearSavedRules}
         >
           <Trash2 className="w-4 h-4" />
@@ -65,6 +65,7 @@ export default function DashboardPage() {
         <div className="mb-6">
           <CategoryTotals categoryTotals={categoryTotals} />
         </div>
+        {/* Search */}
         <div className="relative mb-4">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-gray-500" />
           <Input
