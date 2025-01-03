@@ -15,6 +15,7 @@ export default function useTransaction() {
   const [categoryRules, setCategoryRules] = useState<CategoryRule>(DEFAULT_CATEGORY_RULES);
   const [editingTransaction, setEditingTransaction] = useState<ProcessedTransaction | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [uploadFiles, setUploadFiles] = useState<string[]>([]);
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement>(null);
@@ -57,6 +58,14 @@ export default function useTransaction() {
     const file = event.target.files?.[0];
 
     if (file) {
+      if (uploadFiles.includes(file.name)) {
+        setError("File already uploaded");
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+
+        return;
+      }
       setSelectedFile(file);
       setError(null);
     }
@@ -91,13 +100,19 @@ export default function useTransaction() {
               ...transaction,
               category: categoriseTransaction(transaction.company_name || ""),
               amount: parseFloat(transaction.credit_debit.toString() || "0"),
+              fileSource: selectedFile.name,
             })
           );
 
-          const uncategorised = newTransaction.filter((t) => t.category === "Uncategorised");
+          const updatedTransactions = [...transactions, ...newTransaction];
+          setTransactions(updatedTransactions);
+
+          const uncategorised = updatedTransactions.filter((t) => t.category === "Uncategorised");
           setUncategorisedQueue(uncategorised);
           setUncategorisedTransactions(uncategorised.length > 0 ? uncategorised[0] : null);
-          processTransactions(newTransaction);
+          processTransactions(updatedTransactions);
+
+          setUploadFiles((prev) => [...prev, selectedFile.name]);
 
           // reset file input
           setSelectedFile(null);
