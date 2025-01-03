@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { X, Plus } from "lucide-react";
 import { motion } from "framer-motion";
-import { ProcessedTransaction, Transaction } from "@/app/dashboard/components/types";
 
 const AnimatedCloseButton = ({ onClick }: { onClick: () => void }) => {
   const [isHovered, setIsHovered] = useState(false);

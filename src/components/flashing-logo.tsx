@@ -26,7 +26,7 @@ export default function FlashingLogo() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [colours.length]);
 
   return (
     <Link

@@ -1,11 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Rubik_Vinyl } from "next/font/google";
-import { Gluten } from "next/font/google";
 import { ThemeToggle } from "./theme/theme-toggle";
 import FlashingLogo from "./flashing-logo";
 

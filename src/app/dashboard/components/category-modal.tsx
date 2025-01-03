@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { PREDEFINED_EXPENSES, PREDEFINED_INCOME } from "@/app/dashboard/components/constants";
 import * as LucideIcons from "lucide-react";
-import { LucideIcon, X, Plus } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import { useState } from "react";
 import AnimatedCloseButton from "@/components/animated-close-button";
 

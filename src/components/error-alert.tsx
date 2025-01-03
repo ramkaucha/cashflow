@@ -1,4 +1,3 @@
-import { X } from "lucide-react";
 import AnimatedCloseButton from "./animated-close-button";
 
 export default function ErrorAlert({
