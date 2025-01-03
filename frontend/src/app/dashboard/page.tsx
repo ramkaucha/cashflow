@@ -51,11 +51,11 @@ export default function DashboardPage() {
             type="file"
             accept=".csv"
             onChange={handleFileSelect}
-            className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+            className="text-sm text-gray-500 dark:text-white dark:bg-gray-400 rounded-md  file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-purple-50 file:text-purple-700 hover:file:bg-blue-100"
           />
           {/* </div> */}
           <button
-            className="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
+            className="flex items-center px-4 py-2 text-sm font-semibold text-white bg-purple-600 rounded-md hover:bg-purple-800 transition-colors"
             onClick={handleFileUpload}
           >
             Upload

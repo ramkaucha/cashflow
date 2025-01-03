@@ -7,22 +7,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { Rubik_Vinyl } from "next/font/google";
 import { Gluten } from "next/font/google";
 import { ThemeToggle } from "./theme/theme-toggle";
+import FlashingLogo from "./flashing-logo";
 
 interface SitePage {
   name: string;
   route: string;
   current: boolean;
 }
-
-const rubikVinyl = Rubik_Vinyl({
-  weight: "400",
-  subsets: ["latin"],
-});
-
-const gluten = Gluten({
-  weight: "800",
-  subsets: ["latin"],
-});
 
 const sitePages: SitePage[] = [
   {
@@ -63,9 +54,7 @@ export default function Navigation() {
     <motion.nav>
       <div className="flex justify-between items-center w-full px-5 pt-1">
         <div className="py-2 sm:block flex-col hidden">
-          <Link href="/" className={`text-lg ${gluten.className}`}>
-            CashFlow
-          </Link>
+          <FlashingLogo />
         </div>
         <div className="flex md:space-x-3">
           {pages.map((page) => (
@@ -74,10 +63,10 @@ export default function Navigation() {
               onClick={() => handleClick(page)}
               aria-current={page.current ? "page" : undefined}
               className={`
-              text-sm p-2 rounded-md my-3 leading-none h-fit
-              ${page.current ? "bg-blue-500 text-white" : "text-gray-700"}`}
+              text-sm p-2 rounded-md my-3 leading-none h-fit font-semibold
+              ${page.current ? "text-white" : "text-gray-800"}`}
               animate={{
-                backgroundColor: page.current ? "#2563EB" : "#F3F4F6",
+                backgroundColor: page.current ? "#6b1c8c" : "#F3F4F6",
               }}
               transition={{ duration: 0.2 }}
             >
