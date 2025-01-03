@@ -86,7 +86,7 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
           <div className="flex justify-end">
             <div className="flex-col space-y-2">
               <div>
-                <p className="text-sm text-gray-800 font-semibold text-right">
+                <p className="text font-semibold text-right">
                   Total Income
                   <span className="text-lg font-bold ml-3 text-green-600">
                     + {formatCurrency(totalIncome)}
@@ -94,7 +94,7 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
                 </p>
               </div>
               <div>
-                <p className="text-sm text-gray-800 font-semibold text-right">
+                <p className="text-sm  font-semibold text-right">
                   Total Expense
                   <span className="text-lg font-bold ml-3 text-red-600">
                     {formatCurrency(totalExpense)}
@@ -103,7 +103,7 @@ const CategoryTotals: React.FC<CategoryTotalsProps> = ({ categoryTotals }) => {
               </div>
               <hr />
               <div>
-                <p className="text-sm text-gray-800 font-semibold text-right">
+                <p className="text-sm  font-semibold text-right">
                   Net Amount (Profit)
                   <span
                     className={`text-lg font-bold ml-3 ${
