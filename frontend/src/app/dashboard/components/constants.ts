@@ -69,7 +69,7 @@ export const DEFAULT_CATEGORY_RULES = {
   STAKE: "Investments",
   HOUSE: "Rent",
   REBEL: "Clothing",
-  "CREDUT CARD": "Debt",
+  "CREDIT CARD": "Debt",
   HOLIDAYS: "Leisure",
 };
 

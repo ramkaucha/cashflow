@@ -25,6 +25,8 @@ export default function DashboardPage() {
     handleEditCategorySelect,
     clearSavedRules,
     handleOnCloseModal,
+    fileInputRef,
+    handleFileSelect,
   } = useTransaction();
 
   const [globalFilter, setGlobalFilter] = useState("");
@@ -45,16 +47,21 @@ export default function DashboardPage() {
         <div className="mb-6 flex items-center space-x-2">
           {/* <div className="flex-1"> */}
           <input
+            ref={fileInputRef}
             type="file"
             accept=".csv"
-            onChange={handleFileUpload}
+            onChange={handleFileSelect}
             className="text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
           />
           {/* </div> */}
-          <button className="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
+          <button
+            className="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors"
+            onClick={handleFileUpload}
+          >
             Upload
           </button>
         </div>
+        {error && <ErrorAlert message={error} handleClose={() => setError(null)} />}
         <div className="mb-6">
           <CategoryTotals categoryTotals={categoryTotals} />
         </div>
@@ -67,7 +74,6 @@ export default function DashboardPage() {
             className="pl-8"
           />
         </div>
-        {error && <ErrorAlert message={error} handleClose={() => setError(null)} />}
         <TransactionTable
           transactions={transactions}
           globalFilter={globalFilter}

@@ -16,6 +16,9 @@ export default function useTransaction() {
   const [editingTransaction, setEditingTransaction] = useState<ProcessedTransaction | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     const savedRules = localStorage.getItem(STORAGE_KEY);
     setCategoryRules({
@@ -50,20 +53,27 @@ export default function useTransaction() {
     setTransactions(transactionData);
   };
 
-  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
 
-    if (!file) {
+    if (file) {
+      setSelectedFile(file);
+      setError(null);
+    }
+  };
+
+  const handleFileUpload = () => {
+    if (!selectedFile) {
       setError("No File detected");
       return;
     }
 
-    if (file.type !== "text/csv" && !file.name.endsWith(".csv")) {
+    if (selectedFile.type !== "text/csv" && !selectedFile.name.endsWith(".csv")) {
       setError("Please upload a .csv file");
       return;
     }
-    const reader = new FileReader();
 
+    const reader = new FileReader();
     reader.onload = (e: ProgressEvent<FileReader>) => {
       if (!e.target?.result) {
         setError("File has no content");
@@ -88,11 +98,17 @@ export default function useTransaction() {
           setUncategorisedQueue(uncategorised);
           setUncategorisedTransactions(uncategorised.length > 0 ? uncategorised[0] : null);
           processTransactions(newTransaction);
+
+          // reset file input
+          setSelectedFile(null);
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
         },
       });
     };
 
-    reader.readAsText(file);
+    reader.readAsText(selectedFile);
   };
 
   const saveRule = (name: string, category: string) => {
@@ -200,5 +216,7 @@ export default function useTransaction() {
     handleEditCategorySelect,
     clearSavedRules,
     handleOnCloseModal,
+    handleFileSelect,
+    fileInputRef,
   };
 }
